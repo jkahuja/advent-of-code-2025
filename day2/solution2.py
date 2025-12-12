@@ -2,15 +2,19 @@ import sys
 
 total = 0
 
+
 def is_duplicate(str_num, split_point, key):
     if len(str_num) == 0:
         return True
-    return str_num[0:split_point] == key and is_duplicate(str_num[split_point:], split_point, key)
+    return str_num[0:split_point] == key and is_duplicate(
+        str_num[split_point:], split_point, key
+    )
+
 
 line = sys.stdin.read()
-ranges = line.split(',')
+ranges = line.split(",")
 for range_ in ranges:
-    start, end = range_.split('-')
+    start, end = range_.split("-")
     start = int(start)
     end = int(end)
     for i in range(start, end + 1):
@@ -23,6 +27,4 @@ for range_ in ranges:
                 total += i
                 break
 
-print(total) 
-             
-    
+print(total)

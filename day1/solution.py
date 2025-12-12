@@ -7,7 +7,7 @@ cur_pos = 50
 for line in sys.stdin:
     direction = line[0]
     turns = int(line[1:])
-    if direction == 'L':
+    if direction == "L":
         cur_pos = (cur_pos - turns) % 100
     else:
         cur_pos = (cur_pos + turns) % 100
