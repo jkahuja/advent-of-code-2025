@@ -12,9 +12,11 @@ def bfs(goal_state, buttons):
     while queue:
         min_val = None
         min_idx = None
+        zero_inds = set()
         cur_state, num_presses = queue.pop(0) 
         for i in range(0, len(goal_state)):
             if goal_state[i] == cur_state[i]:
+                zero_inds.add(i)
                 continue
             if not min_val:
                 min_val = (goal_state[i] - cur_state[i])
@@ -26,10 +28,11 @@ def bfs(goal_state, buttons):
             return min_presses
         possible_buttons = []
         for button in buttons:
-            if min_idx in button:
+            if min_idx in button and not any(ind in zero_inds for ind in button):
                 possible_buttons.append(button)
         for button_set in combinations_with_replacement(possible_buttons, min_val):
             is_valid = True
+            button_valid = True
             new_state = list(cur_state)
             for button in button_set:
                 for pos in button:
