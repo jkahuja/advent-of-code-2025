@@ -46,6 +46,8 @@ def bfs(goal_state, buttons):
                     min_presses = num_presses + min_val
                 else:
                     min_presses = min(min_presses, num_presses + min_val)
+                if num_presses + min_val != min_presses:
+                    continue
             if is_valid:
                 queue.append((tuple(new_state), num_presses + min_val))
     return min_presses
